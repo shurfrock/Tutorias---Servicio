@@ -8,6 +8,7 @@ import {
   FormSwitch,
   InputGroup,
 } from "../../base-components/Form";
+import { useNavigate } from "react-router-dom";
 
 function Main() {
   const [categories, setCategories] = useState(["1", "3"]);
@@ -17,6 +18,12 @@ function Main() {
     },
   };
   const [editorData, setEditorData] = useState("<p>Content of the editor.</p>");
+
+  const navigate = useNavigate();
+
+  const navigateForms = () => {
+    navigate("/crud-data-list");
+  };
 
   return (
     <>
@@ -28,16 +35,16 @@ function Main() {
           {/* BEGIN: Form Layout */}
           <div className="p-5 intro-y box">
             <div>
-              <FormLabel htmlFor="crud-form-1">Product Name</FormLabel>
+              <FormLabel htmlFor="crud-form-1">Titulo Formulario</FormLabel>
               <FormInput
                 id="crud-form-1"
                 type="text"
                 className="w-full"
-                placeholder="Input text"
+                placeholder="Titulo Formulario"
               />
             </div>
             <div className="mt-3">
-              <FormLabel htmlFor="crud-form-2">Category</FormLabel>
+              <FormLabel htmlFor="crud-form-2">Carreras</FormLabel>
               <TomSelect
                 id="crud-form-2"
                 value={categories}
@@ -107,13 +114,13 @@ function Main() {
               </div>
             </div>
             <div className="mt-3">
-              <label>Active Status</label>
+              <label>Activar Estatus</label>
               <FormSwitch className="mt-2">
                 <FormSwitch.Input type="checkbox" />
               </FormSwitch>
             </div>
             <div className="mt-3">
-              <label>Description</label>
+              <label>Descripcion</label>
               <div className="mt-2">
                 <ClassicEditor
                   value={editorData}
@@ -127,11 +134,12 @@ function Main() {
                 type="button"
                 variant="outline-secondary"
                 className="w-24 mr-1"
+                onClick={navigateForms}
               >
-                Cancel
+                Cancelar
               </Button>
               <Button type="button" variant="primary" className="w-24">
-                Save
+                Guardar
               </Button>
             </div>
           </div>

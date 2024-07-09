@@ -9,20 +9,27 @@ import Lucide from "../../base-components/Lucide";
 import Tippy from "../../base-components/Tippy";
 import { Dialog, Menu } from "../../base-components/Headless";
 import Table from "../../base-components/Table";
+import { useNavigate } from "react-router-dom";
 
 function Main() {
   const [deleteConfirmationModal, setDeleteConfirmationModal] = useState(false);
   const deleteButtonRef = useRef(null);
 
+  const navigate = useNavigate();
+
+  const navigateCreateForm = () => {
+    navigate("/crud-form");
+  };
+
   return (
     <>
-      <h2 className="mt-10 text-lg font-medium intro-y">Data List Layout</h2>
+      <h2 className="mt-10 text-lg font-medium intro-y">Formularios</h2>
       <div className="grid grid-cols-12 gap-6 mt-5">
         <div className="flex flex-wrap items-center col-span-12 mt-2 intro-y sm:flex-nowrap">
-          <Button variant="primary" className="mr-2 shadow-md">
-            Add New Product
+          <Button variant="outline-success" className="mr-2 shadow-md" onClick={navigateCreateForm}>
+            Crear nuevo formulario
           </Button>
-          <Menu>
+          {/* <Menu>
             <Menu.Button as={Button} className="px-2 !box">
               <span className="flex items-center justify-center w-5 h-5">
                 <Lucide icon="Plus" className="w-4 h-4" />
@@ -41,16 +48,16 @@ function Main() {
                 PDF
               </Menu.Item>
             </Menu.Items>
-          </Menu>
+          </Menu> */}
           <div className="hidden mx-auto md:block text-slate-500">
-            Showing 1 to 10 of 150 entries
+            Mostrar 1 - 10 de 150 
           </div>
           <div className="w-full mt-3 sm:w-auto sm:mt-0 sm:ml-auto md:ml-0">
             <div className="relative w-56 text-slate-500">
               <FormInput
                 type="text"
                 className="w-56 pr-10 !box"
-                placeholder="Search..."
+                placeholder="Buscar..."
               />
               <Lucide
                 icon="Search"
@@ -65,19 +72,19 @@ function Main() {
             <Table.Thead>
               <Table.Tr>
                 <Table.Th className="border-b-0 whitespace-nowrap">
-                  IMAGES
+                  ESTUDIANTES
                 </Table.Th>
                 <Table.Th className="border-b-0 whitespace-nowrap">
-                  PRODUCT NAME
+                  TITULO
                 </Table.Th>
                 <Table.Th className="text-center border-b-0 whitespace-nowrap">
-                  STOCK
+                  RESPUESTAS
                 </Table.Th>
                 <Table.Th className="text-center border-b-0 whitespace-nowrap">
-                  STATUS
+                  ESTATUS
                 </Table.Th>
                 <Table.Th className="text-center border-b-0 whitespace-nowrap">
-                  ACTIONS
+                  ACCIONES
                 </Table.Th>
               </Table.Tr>
             </Table.Thead>
@@ -135,14 +142,14 @@ function Main() {
                       })}
                     >
                       <Lucide icon="CheckSquare" className="w-4 h-4 mr-2" />
-                      {faker.trueFalse[0] ? "Active" : "Inactive"}
+                      {faker.trueFalse[0] ? "Activo" : "Inactivo"}
                     </div>
                   </Table.Td>
                   <Table.Td className="first:rounded-l-md last:rounded-r-md w-56 bg-white border border-r-0 border-l-0 first:border-l last:border-r border-slate-200 dark:bg-darkmode-600 dark:border-darkmode-600 shadow-[20px_3px_20px_#0000000b] py-0 relative before:block before:w-px before:h-8 before:bg-slate-200 before:absolute before:left-0 before:inset-y-0 before:my-auto before:dark:bg-darkmode-400">
                     <div className="flex items-center justify-center">
                       <a className="flex items-center mr-3" href="#">
                         <Lucide icon="CheckSquare" className="w-4 h-4 mr-1" />{" "}
-                        Edit
+                        Editar
                       </a>
                       <a
                         className="flex items-center text-danger"
@@ -151,7 +158,7 @@ function Main() {
                           setDeleteConfirmationModal(true);
                         }}
                       >
-                        <Lucide icon="Trash2" className="w-4 h-4 mr-1" /> Delete
+                        <Lucide icon="Trash2" className="w-4 h-4 mr-1" /> Borrar
                       </a>
                     </div>
                   </Table.Td>
@@ -205,10 +212,10 @@ function Main() {
               icon="XCircle"
               className="w-16 h-16 mx-auto mt-3 text-danger"
             />
-            <div className="mt-5 text-3xl">Are you sure?</div>
+            <div className="mt-5 text-3xl">¿Deseas Eliminarlo?</div>
             <div className="mt-2 text-slate-500">
-              Do you really want to delete these records? <br />
-              This process cannot be undone.
+              ¿Deseas Borrar el formulario? <br />
+              Se perdera la informacion del formulario con sus respuestas.
             </div>
           </div>
           <div className="px-5 pb-8 text-center">
@@ -220,7 +227,7 @@ function Main() {
               }}
               className="w-24 mr-1"
             >
-              Cancel
+              Cancelar
             </Button>
             <Button
               variant="danger"
@@ -228,7 +235,7 @@ function Main() {
               className="w-24"
               ref={deleteButtonRef}
             >
-              Delete
+              Borrar
             </Button>
           </div>
         </Dialog.Panel>
