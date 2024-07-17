@@ -1,4 +1,4 @@
-import logoUrl from "../../assets/images/logo.svg";
+import logoUrl from "../../assets/images/logo.png";
 import DarkModeSwitcher from "../../components/DarkModeSwitcher";
 import MainColorSwitcher from "../../components/MainColorSwitcher";
 import Button from "../../base-components/Button";
@@ -20,7 +20,7 @@ function Main() {
         <div className="flex items-center justify-center w-full min-h-screen p-5 md:p-20">
           <div className="w-96 intro-y">
             <img
-              className="w-16 mx-auto"
+              className="w-28 mx-auto"
               alt="Rocketman - Tailwind HTML Admin Template"
               src={logoUrl}
             />

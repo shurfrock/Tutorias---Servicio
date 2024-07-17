@@ -1,10 +1,17 @@
-import logoUrl from "../../assets/images/logo.svg";
+import logoUrl from "../../assets/images/logo.png";
 import DarkModeSwitcher from "../../components/DarkModeSwitcher";
 import MainColorSwitcher from "../../components/MainColorSwitcher";
 import Button from "../../base-components/Button";
-import { FormInput, FormCheck } from "../../base-components/Form";
+import { FormInput } from "../../base-components/Form";
+import { useNavigate } from "react-router-dom";
 
 function Main() {
+  const navigate = useNavigate();
+
+  const navigateLogin = () => {
+    navigate("/login");
+  };
+
   return (
     <>
       <div className="container">
@@ -24,12 +31,12 @@ function Main() {
               <FormInput
                 type="text"
                 className="block px-4 py-3"
-                placeholder="Nombre"
+                placeholder="Nombres"
               />
               <FormInput
                 type="text"
                 className="block px-4 py-3 mt-4"
-                placeholder="Apellido"
+                placeholder="Codigo"
               />
               <FormInput
                 type="text"
@@ -50,8 +57,8 @@ function Main() {
                 <Button variant="primary" className="w-full xl:mr-3">
                   Registarse
                 </Button>
-                <Button variant="outline-secondary" className="w-full mt-3">
-                  Iniciar Sesion
+                <Button variant="outline-secondary" className="w-full mt-3" onClick={navigateLogin}>
+                  Volver
                 </Button>
               </div>
             </div>
