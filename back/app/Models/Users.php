@@ -17,4 +17,8 @@ class Users extends Authenticatable
     {
         $this->attributes['password'] = Hash::make($value);
     }
+    public function forms()
+    {
+        return $this->hasMany(Form::class);
+    }
 }
