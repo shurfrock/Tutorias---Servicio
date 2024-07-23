@@ -37,7 +37,7 @@ function Main(props: { toggleMobileMenu: (event: React.MouseEvent) => void }) {
       <div className="h-[63px] z-[51] flex items-center relative xl:px-5">
         {/* BEGIN: Breadcrumb */}
         <Breadcrumb light className="hidden -intro-x xl:flex">
-          <Breadcrumb.Link to="/"> Tutorias </Breadcrumb.Link>
+          <Breadcrumb.Link to="/menuHome"> Tutorias </Breadcrumb.Link>
           <Breadcrumb.Link to="/"> Nombre de Pagina </Breadcrumb.Link>
           <Breadcrumb.Link to="/" active={true}>
             Segundo Nombre

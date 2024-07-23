@@ -7,7 +7,7 @@ import Pagination from "../../base-components/Pagination";
 import { FormInput, FormSelect } from "../../base-components/Form";
 import Lucide from "../../base-components/Lucide";
 import Tippy from "../../base-components/Tippy";
-import { Dialog, Menu } from "../../base-components/Headless";
+import { Dialog } from "../../base-components/Headless";
 import Table from "../../base-components/Table";
 import { useNavigate } from "react-router-dom";
 
@@ -18,26 +18,20 @@ function Main() {
   const navigate = useNavigate();
 
   const navigateCreateForm = () => {
-    navigate("/crud-form");
+    navigate("/");
   };
 
   return (
     <>
-      <h2 className="mt-10 text-lg font-medium intro-y">Formularios</h2>
+      <h2 className="mt-10 text-lg font-medium intro-y">Alumnos</h2>
       <div className="grid grid-cols-12 gap-6 mt-5">
         <div className="flex flex-wrap items-center col-span-12 mt-2 intro-y sm:flex-nowrap">
-          <Button variant="outline-success" className="mr-2 shadow-md" onClick={navigateCreateForm}>
-            Crear nuevo formulario
-          </Button>
           <div className="hidden mx-auto md:block text-slate-500">
-            Mostrar 1 - 10 de 150 
-          </div>
-          <div className="w-full mt-3 sm:w-auto sm:mt-0 sm:ml-auto md:ml-0">
-            <div className="relative w-56 text-slate-500">
+            <div className="relative w-80 text-slate-500">
               <FormInput
                 type="text"
-                className="w-56 pr-10 !box"
-                placeholder="Buscar..."
+                className="w-80 pr-10 !box"
+                placeholder="Buscar Alumno..."
               />
               <Lucide
                 icon="Search"
@@ -52,13 +46,16 @@ function Main() {
             <Table.Thead>
               <Table.Tr>
                 <Table.Th className="border-b-0 whitespace-nowrap">
-                  ESTUDIANTES
+                  FOTO
                 </Table.Th>
                 <Table.Th className="border-b-0 whitespace-nowrap">
-                  TITULO
+                  NOMBRE
                 </Table.Th>
                 <Table.Th className="text-center border-b-0 whitespace-nowrap">
-                  RESPUESTAS
+                  TUTOR
+                </Table.Th>
+                <Table.Th className="text-center border-b-0 whitespace-nowrap">
+                  CODIGO
                 </Table.Th>
                 <Table.Th className="text-center border-b-0 whitespace-nowrap">
                   ESTATUS
@@ -79,39 +76,23 @@ function Main() {
                           alt="Rocketman Tailwind HTML Admin Template"
                           className="rounded-full shadow-[0px_0px_0px_2px_#fff,_1px_1px_5px_rgba(0,0,0,0.32)] dark:shadow-[0px_0px_0px_2px_#3f4865,_1px_1px_5px_rgba(0,0,0,0.32)]"
                           src={faker.images[0]}
-                          content={`Nombre de Alumno`}
-                        />
-                      </div>
-                      <div className="w-10 h-10 -ml-5 image-fit zoom-in">
-                        <Tippy
-                          as="img"
-                          alt="Rocketman Tailwind HTML Admin Template"
-                          className="rounded-full shadow-[0px_0px_0px_2px_#fff,_1px_1px_5px_rgba(0,0,0,0.32)] dark:shadow-[0px_0px_0px_2px_#3f4865,_1px_1px_5px_rgba(0,0,0,0.32)]"
-                          src={faker.images[1]}
-                          content={`Nombre de Alumno`}
-                        />
-                      </div>
-                      <div className="w-10 h-10 -ml-5 image-fit zoom-in">
-                        <Tippy
-                          as="img"
-                          alt="Rocketman Tailwind HTML Admin Template"
-                          className="rounded-full shadow-[0px_0px_0px_2px_#fff,_1px_1px_5px_rgba(0,0,0,0.32)] dark:shadow-[0px_0px_0px_2px_#3f4865,_1px_1px_5px_rgba(0,0,0,0.32)]"
-                          src={faker.images[2]}
-                          content={`Nombre de Alumno`}
                         />
                       </div>
                     </div>
                   </Table.Td>
                   <Table.Td className="first:rounded-l-md last:rounded-r-md bg-white border border-r-0 border-l-0 first:border-l last:border-r border-slate-200 dark:bg-darkmode-600 dark:border-darkmode-600 shadow-[20px_3px_20px_#0000000b]">
                     <a href="" className="font-medium whitespace-nowrap">
-                      Titulo de Formulario
+                      Nombre
                     </a>
                     <div className="text-slate-500 text-xs whitespace-nowrap mt-0.5">
-                      Carrera asignada
+                      Correo
                     </div>
                   </Table.Td>
                   <Table.Td className="first:rounded-l-md last:rounded-r-md text-center bg-white border border-r-0 border-l-0 first:border-l last:border-r border-slate-200 dark:bg-darkmode-600 dark:border-darkmode-600 shadow-[20px_3px_20px_#0000000b]">
-                    {faker.stocks[0]}
+                      Nombre de Tutor
+                  </Table.Td>
+                  <Table.Td className="first:rounded-l-md last:rounded-r-md text-center bg-white border border-r-0 border-l-0 first:border-l last:border-r border-slate-200 dark:bg-darkmode-600 dark:border-darkmode-600 shadow-[20px_3px_20px_#0000000b]">
+                    Codigo 9 numeros
                   </Table.Td>
                   <Table.Td className="first:rounded-l-md last:rounded-r-md w-40 bg-white border border-r-0 border-l-0 first:border-l last:border-r border-slate-200 dark:bg-darkmode-600 dark:border-darkmode-600 shadow-[20px_3px_20px_#0000000b]">
                     <div
@@ -192,10 +173,10 @@ function Main() {
               icon="XCircle"
               className="w-16 h-16 mx-auto mt-3 text-danger"
             />
-            <div className="mt-5 text-3xl">¿Deseas Eliminarlo?</div>
+            <div className="mt-5 text-3xl">¿Deseas Eliminarl a este alumno de tu tutorado?</div>
             <div className="mt-2 text-slate-500">
-              ¿Deseas Borrar el formulario? <br />
-              Se perdera la informacion del formulario con sus respuestas.
+              ¿Deseas Borrar al alumno? <br />
+              Se perdera la informacion del Alumno.
             </div>
           </div>
           <div className="px-5 pb-8 text-center">

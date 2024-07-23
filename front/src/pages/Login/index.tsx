@@ -2,8 +2,13 @@ import logoUrl from "../../assets/images/logo.png";
 import DarkModeSwitcher from "../../components/DarkModeSwitcher";
 import MainColorSwitcher from "../../components/MainColorSwitcher";
 import Button from "../../base-components/Button";
-import { FormInput, FormCheck } from "../../base-components/Form";
+import { FormInput, FormLabel, InputGroup, FormCheck } from "../../base-components/Form";
 import { useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import Toastify from "toastify-js";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+import clsx from "clsx";
 
 function Main() {
   const navigate = useNavigate();
@@ -11,6 +16,57 @@ function Main() {
   const navigateRegister = () => {
     navigate("/register");
   };
+
+  const schema = yup
+  .object({
+    name: yup.string().required().min(10),
+    email: yup.string().required().email(),
+    password: yup.string().required().min(8),
+  })
+  .required();
+
+  const {
+    register,
+    trigger,
+    formState: { errors },
+  } = useForm({
+    mode: "onChange",
+    resolver: yupResolver(schema),
+  });
+
+  const onSubmit = async (event: React.ChangeEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const result = await trigger();
+    if (!result) {
+      const failedEl = document
+        .querySelectorAll("#failed-notification-content")[0]
+        .cloneNode(true) as HTMLElement;
+      failedEl.classList.remove("hidden");
+      Toastify({
+        node: failedEl,
+        duration: 3000,
+        newWindow: true,
+        close: true,
+        gravity: "top",
+        position: "right",
+        stopOnFocus: true,
+      }).showToast();
+    } else {
+      const successEl = document
+        .querySelectorAll("#success-notification-content")[0]
+        .cloneNode(true) as HTMLElement;
+      successEl.classList.remove("hidden");
+      Toastify({
+        node: successEl,
+        duration: 3000,
+        newWindow: true,
+        close: true,
+        gravity: "top",
+        position: "right",
+        stopOnFocus: true,
+      }).showToast();
+    }
+  }; 
 
   return (
     <>
@@ -28,32 +84,56 @@ function Main() {
               Iniciar Sesion
             </div>
             <div className="box px-5 py-8 mt-10 max-w-[450px] relative before:content-[''] before:z-[-1] before:w-[95%] before:h-full before:bg-slate-200 before:border before:border-slate-200 before:-mt-5 before:absolute before:rounded-lg before:mx-auto before:inset-x-0 before:dark:bg-darkmode-600/70 before:dark:border-darkmode-500/60">
+              
+              <FormLabel
+                  htmlFor="validation-form-2"
+                  className="flex flex-col w-full sm:flex-row mt-3"
+                >
+                  Correo
+              </FormLabel>
+              <InputGroup>
+                <InputGroup.Text id="input-group-email">
+                  @
+                </InputGroup.Text>
+                <FormInput
+                  {...register("email")}
+                  id="validation-form-2"
+                  type="email"
+                  name="email"
+                  className={clsx({
+                    "border-danger mt-3": errors.email,
+                  })}
+                  placeholder="Correo Intitucional"
+                />
+              </InputGroup>
+              {errors.email && (
+                <div className="mt-2 text-danger">
+                  {typeof errors.email.message === "string" &&
+                    errors.email.message}
+                </div>
+              )}
+              <FormLabel
+                htmlFor="validation-form-3"
+                className="flex flex-col w-full sm:flex-row mt-3"
+              >
+                Contraseña
+              </FormLabel>
               <FormInput
-                type="text"
-                className="block px-4 py-3"
-                placeholder="Correo"
-              />
-              <FormInput
+                {...register("password")}
+                id="validation-form-3"
                 type="password"
-                className="block px-4 py-3 mt-4"
+                name="password"
+                className={clsx({
+                  "border-danger": errors.password,
+                })}
                 placeholder="Contraseña"
               />
-              <div className="flex mt-4 text-xs text-slate-500 sm:text-sm">
-                <div className="flex items-center mr-auto">
-                  <FormCheck.Input
-                    id="remember-me"
-                    type="checkbox"
-                    className="mr-2 border"
-                  />
-                  <label
-                    className="cursor-pointer select-none"
-                    htmlFor="remember-me"
-                  >
-                    Recordar usuario
-                  </label>
+              {errors.password && (
+                <div className="mt-2 text-danger">
+                  {typeof errors.password.message === "string" &&
+                    errors.password.message}
                 </div>
-                <a href="">¿Contraseña Olvidada?</a>
-              </div>
+              )}
               <div className="mt-5 text-center xl:mt-8 xl:text-left">
                 <Button variant="primary" className="w-full xl:mr-3">
                   Iniciar Secion

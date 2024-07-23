@@ -11,13 +11,13 @@ import {
 import { useNavigate } from "react-router-dom";
 
 function Main() {
-  const [categories, setCategories] = useState(["1", "3"]);
+  const [categories, setCategories] = useState(["1"]);
   const editorConfig = {
     toolbar: {
       items: ["bold", "italic", "link"],
     },
   };
-  const [editorData, setEditorData] = useState("<p>Content of the editor.</p>");
+  const [editorData, setEditorData] = useState("<p> Contenido a editar... </p>");
 
   const navigate = useNavigate();
 
@@ -44,6 +44,12 @@ function Main() {
               />
             </div>
             <div className="mt-3">
+              <label>Activar</label>
+              <FormSwitch className="mt-2">
+                <FormSwitch.Input type="checkbox" />
+              </FormSwitch>
+            </div>
+            <div className="mt-3">
               <FormLabel htmlFor="crud-form-2">Carreras</FormLabel>
               <TomSelect
                 id="crud-form-2"
@@ -52,72 +58,11 @@ function Main() {
                 className="w-full"
                 multiple
               >
-                <option value="1">Sport & Outdoor</option>
-                <option value="2">PC & Laptop</option>
-                <option value="3">Smartphone & Tablet</option>
-                <option value="4">Photography</option>
+                <option value="1">Ingenieria Biomedica</option>
+                <option value="2">Ingenieria Informatica</option>
+                <option value="3">Ingenieria Robotica</option>
+                <option value="4">Ingenieria </option>
               </TomSelect>
-            </div>
-            <div className="mt-3">
-              <FormLabel htmlFor="crud-form-3">Quantity</FormLabel>
-              <InputGroup>
-                <FormInput
-                  id="crud-form-3"
-                  type="text"
-                  placeholder="Quantity"
-                  aria-describedby="input-group-1"
-                />
-                <InputGroup.Text id="input-group-1">pcs</InputGroup.Text>
-              </InputGroup>
-            </div>
-            <div className="mt-3">
-              <FormLabel htmlFor="crud-form-4">Weight</FormLabel>
-              <InputGroup>
-                <FormInput
-                  id="crud-form-4"
-                  type="text"
-                  placeholder="Weight"
-                  aria-describedby="input-group-2"
-                />
-                <InputGroup.Text id="input-group-2">grams</InputGroup.Text>
-              </InputGroup>
-            </div>
-            <div className="mt-3">
-              <FormLabel>Price</FormLabel>
-              <div className="grid-cols-3 gap-2 sm:grid">
-                <InputGroup>
-                  <InputGroup.Text id="input-group-3">Unit</InputGroup.Text>
-                  <FormInput
-                    type="text"
-                    placeholder="Unit"
-                    aria-describedby="input-group-3"
-                  />
-                </InputGroup>
-                <InputGroup className="mt-2 sm:mt-0">
-                  <InputGroup.Text id="input-group-4">
-                    Wholesale
-                  </InputGroup.Text>
-                  <FormInput
-                    type="text"
-                    placeholder="Wholesale"
-                    aria-describedby="input-group-4"
-                  />
-                </InputGroup>
-                <InputGroup className="mt-2 sm:mt-0">
-                  <InputGroup.Text id="input-group-5">Bulk</InputGroup.Text>
-                  <FormInput
-                    type="text"
-                    placeholder="Bulk"
-                    aria-describedby="input-group-5"
-                  />
-                </InputGroup>
-              </div>
-            </div>
-            <div className="mt-3">
-              <label>Activar Estatus</label>
-              <FormSwitch className="mt-2">
-                <FormSwitch.Input type="checkbox" />
-              </FormSwitch>
             </div>
             <div className="mt-3">
               <label>Descripcion</label>
@@ -129,6 +74,13 @@ function Main() {
                 />
               </div>
             </div>
+            <Button 
+              variant="outline-success" 
+              className="mt-5 mr-2 shadow-md"
+            >
+              Agregar Pregunta
+            </Button>
+            
             <div className="mt-5 text-right">
               <Button
                 type="button"
@@ -138,7 +90,7 @@ function Main() {
               >
                 Cancelar
               </Button>
-              <Button type="button" variant="primary" className="w-24">
+              <Button type="button" variant="success" className="w-24">
                 Guardar
               </Button>
             </div>

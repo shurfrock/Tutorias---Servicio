@@ -96,7 +96,7 @@ function Main() {
       >
         <div className="pt-4 mb-4">
           <div className={clsx(["flex items-center h-[33px]"])}>
-            <Link to="/" className="flex items-center intro-x">
+            <Link to="/menuHome" className="flex items-center intro-x">
               <img
                 alt="Rocketman Tailwind HTML Admin Template"
                 className={clsx([

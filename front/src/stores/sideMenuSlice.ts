@@ -18,6 +18,12 @@ const initialState: SideMenuState = {
   menu: [
     "MENU",
     {
+      icon: "Home",
+      pathname: "/menuHome",
+      title: "Home",
+      
+    },
+    {
       icon: "FileText",
       title: "Formulario",
       subMenu: [
@@ -32,6 +38,12 @@ const initialState: SideMenuState = {
           title: "Crear Formulario",
         },
       ],
+    },
+    {
+      icon: "Users",
+      pathname: "/students",
+      title: "Alumnos",
+      
     },
     {
       icon: "HardDrive",
