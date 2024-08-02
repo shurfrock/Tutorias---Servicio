@@ -12,7 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('forms', function (Blueprint $table) {
+            $table->engine="InnoDB";
             $table->id();
+            $table->bigInteger("category_id")->unsigned();
+            $table->bigInteger("questions_id")->unsigned();
             $table->string("title");
             $table->string("description");
             $table->boolean("status");
@@ -20,6 +23,8 @@ return new class extends Migration
             $table->dateTime("creation_date");
             $table->dateTime("update_date");
             $table->timestamps();
+            $table->foreign("category_id")->references("id")->on("form__categories");
+            $table->foreign("questions_id")->references("id")->on("questions")->onDelete("cascade");
         });
     }
 
