@@ -13,7 +13,7 @@ import { selectSideMenu } from "../../stores/sideMenuSlice";
 import { useAppSelector } from "../../stores/hooks";
 import { FormattedMenu, linkTo, nestedMenu, enter, leave } from "./side-menu";
 import Lucide from "../../base-components/Lucide";
-import logoUrl from "../../assets/images/logo.svg";
+import logoUrl from "../../assets/images/Logo.png";
 import clsx from "clsx";
 import TopBar from "../../components/TopBar";
 import DarkModeSwitcher from "../../components/DarkModeSwitcher";
@@ -41,73 +41,7 @@ function Main() {
   const scrollableRef = createRef<HTMLDivElement>();
   const wrapperRef = useRef<HTMLDivElement>(null);
 
-  // Set active/inactive simple menu
-  const toggleSimpleMenu = (event: React.MouseEvent) => {
-    event.preventDefault();
 
-    if (simpleMenu.active) {
-      setSimpleMenu(
-        {
-          ...simpleMenu,
-          hover: true,
-        },
-        (simpleMenu) => {
-          if (wrapperRef.current) {
-            wrapperRef.current.animate(
-              {
-                marginLeft: "270px",
-              },
-              {
-                duration: 200,
-              }
-            ).onfinish = function () {
-              if (wrapperRef.current) {
-                wrapperRef.current.style.marginLeft = "270px";
-              }
-              setSimpleMenu(
-                {
-                  ...simpleMenu,
-                  hover: false,
-                  active: false,
-                  wrapper: false,
-                },
-                () => {
-                  if (wrapperRef.current) {
-                    wrapperRef.current.removeAttribute("style");
-                  }
-                }
-              );
-            };
-          }
-        }
-      );
-    } else {
-      setSimpleMenu(
-        {
-          ...simpleMenu,
-          active: true,
-          wrapper: true,
-        },
-        () => {
-          if (wrapperRef.current) {
-            wrapperRef.current.style.marginLeft = "270px";
-            wrapperRef.current.animate(
-              {
-                marginLeft: "112px",
-              },
-              {
-                duration: 200,
-              }
-            ).onfinish = function () {
-              if (wrapperRef.current) {
-                wrapperRef.current.removeAttribute("style");
-              }
-            };
-          }
-        }
-      );
-    }
-  };
 
   // Set active/inactive mobile menu
   const toggleMobileMenu = (event: React.MouseEvent) => {
@@ -162,7 +96,7 @@ function Main() {
       >
         <div className="pt-4 mb-4">
           <div className={clsx(["flex items-center h-[33px]"])}>
-            <Link to="/" className="flex items-center intro-x">
+            <Link to="/menuHome" className="flex items-center intro-x">
               <img
                 alt="Rocketman Tailwind HTML Admin Template"
                 className={clsx([
@@ -181,27 +115,9 @@ function Main() {
                     "xl:opacity-0 transition-opacity duration-200 ease-in-out",
                 ])}
               >
-                Waveform
+                TUTORIAS
               </span>
             </Link>
-            <a
-              href="#"
-              onClick={toggleSimpleMenu}
-              className={clsx([
-                "hidden pr-5 ml-auto text-white transition-all duration-300 ease-in-out z-[5] xl:block text-opacity-70 hover:text-opacity-100",
-                simpleMenu.active &&
-                  "opacity-0 transition-opacity duration-200 ease-in-out",
-              ])}
-              data-toggler
-            >
-              <Lucide
-                icon="ArrowLeftCircle"
-                className={clsx([
-                  "w-5 h-5 transition-transform duration-300 ease-in-out",
-                  simpleMenu.active && "transform rotate-180",
-                ])}
-              />
-            </a>
             <a
               href="#"
               onClick={toggleMobileMenu}
