@@ -7,6 +7,7 @@ use App\Http\Controllers\UserController;
 
 use Illuminate\Support\Facades\Route;
 
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -24,4 +25,3 @@ Route::post('logout', [LoginController::class, 'logout'])->name('logout')->middl
 
 Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('auth');
 
-Route::resource('users', UserController::class)->middleware('auth');
