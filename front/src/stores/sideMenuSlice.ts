@@ -46,6 +46,11 @@ const initialState: SideMenuState = {
       
     },
     {
+      icon: "MessageSquare",
+      pathname: "/chatBot",
+      title: "Chat Bot",
+    },
+    {
       icon: "HardDrive",
       pathname: "/error-page",
       title: "Error Page",
