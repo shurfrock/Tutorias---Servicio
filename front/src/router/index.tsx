@@ -9,6 +9,7 @@ import Register from "../pages/Register";
 import ErrorPage from "../pages/ErrorPage";
 import Students from "../pages/Students";
 import MenuHome from "../pages/MenuHome";
+import ChatBot from "../pages/ChatBot"
 
 
 function Router() {
@@ -40,6 +41,10 @@ function Router() {
         {
           path: "/menuHome",
           element: <MenuHome />,
+        },
+        {
+          path: "/chatBot",
+          element: <ChatBot />,
         }
       ],
     },
