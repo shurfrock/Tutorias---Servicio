@@ -12,14 +12,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('questions__options', function (Blueprint $table) {
-            $table->engine="InnoDB";
+   
             $table->id();
             $table->string("text");
             $table->timestamps();
         });
     }
 
-    /**
+    /** $table->id();
+
      * Reverse the migrations.
      */
     public function down(): void

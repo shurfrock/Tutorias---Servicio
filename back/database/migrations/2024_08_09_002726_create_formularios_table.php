@@ -11,20 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('forms', function (Blueprint $table) {
-            $table->engine="InnoDB";
+        Schema::create('formularios', function (Blueprint $table) {
             $table->id();
             $table->bigInteger("category_id")->unsigned();
             $table->bigInteger("questions_id")->unsigned();
             $table->string("title");
             $table->string("description");
-            $table->boolean("status");
+            $table->string("status");
             $table->string("category");
-            $table->dateTime("creation_date");
-            $table->dateTime("update_date");
             $table->timestamps();
-            $table->foreign("category_id")->references("id")->on("form__categories");
-            $table->foreign("questions_id")->references("id")->on("questions")->onDelete("cascade");
         });
     }
 
@@ -33,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('forms');
+        Schema::dropIfExists('formularios');
     }
 };
