@@ -28,5 +28,13 @@ class Question extends Model
      */
     protected $fillable = ['title', 'question_type'];
 
+    public function form()
+    {
+        return $this->belongsTo(Formulario::class);
+    }
+    public function options()
+    {
+        return $this->hasMany(Questions_Options::class);
+    }
 
 }

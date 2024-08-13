@@ -38,12 +38,13 @@
                                         
 									<th >Category Id</th>
 									<th >Questions Id</th>
-									<th >Title</th>
-									<th >Description</th>
-									<th >Status</th>
-									<th >Category</th>
-									<th >Creation Date</th>
-									<th >Update Date</th>
+									<th >Titulo</th>
+									<th >Descripción</th>
+									<th >Estado</th>
+									<th >Categoria</th>
+                                    <th >Creado</th>
+                                    <th >Actualizado</th>
+
 
                                         <th></th>
                                     </tr>
@@ -59,8 +60,9 @@
 										<td >{{ $formulario->description }}</td>
 										<td >{{ $formulario->status }}</td>
 										<td >{{ $formulario->category }}</td>
-										<td >{{ $formulario->creation_date }}</td>
-										<td >{{ $formulario->update_date }}</td>
+                                        <td >{{ $formulario->created_at }}</td>
+                                        <td >{{ $formulario->updated_at }}</td>
+
 
                                             <td>
                                                 <form action="{{ route('formularios.destroy', $formulario->id) }}" method="POST">

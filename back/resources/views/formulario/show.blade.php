@@ -44,14 +44,7 @@
                                     <strong>Category:</strong>
                                     {{ $formulario->category }}
                                 </div>
-                                <div class="form-group mb-2 mb20">
-                                    <strong>Creation Date:</strong>
-                                    {{ $formulario->creation_date }}
-                                </div>
-                                <div class="form-group mb-2 mb20">
-                                    <strong>Update Date:</strong>
-                                    {{ $formulario->update_date }}
-                                </div>
+
 
                     </div>
                 </div>

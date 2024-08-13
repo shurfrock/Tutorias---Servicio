@@ -33,6 +33,10 @@ class Formulario extends Model
      * @var array<int, string>
      */
     protected $fillable = ['category_id', 'questions_id', 'title', 'description', 'status', 'category'];
+    public function category()
+    {
+        return $this->hasMany("App\Models\Category" , "categories_id" , "id");
+    }
 
 
 }

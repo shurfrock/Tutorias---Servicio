@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Formulario;
+
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Http\Requests\FormularioRequest;
@@ -28,7 +29,7 @@ class FormularioController extends Controller
     public function create(): View
     {
         $formulario = new Formulario();
-
+        
         return view('formulario.create', compact('formulario'));
     }
 

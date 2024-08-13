@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('formularios', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger("category_id")->unsigned();
-            $table->bigInteger("questions_id")->unsigned();
+            $table->unsignedBigInteger("category_id");
+            $table->unsignedBigInteger("questions_id");
             $table->string("title");
             $table->string("description");
             $table->string("status");

@@ -27,6 +27,10 @@ class Category extends Model
      * @var array<int, string>
      */
     protected $fillable = ['name', 'tag'];
-
+    public function formulario()
+    {
+        return $this->hasOne("App\Models\Formulario" , "id" , "categories _id");
+    }
 
 }
+
