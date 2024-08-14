@@ -21,6 +21,10 @@ function Main() {
     navigate("/crud-form");
   };
 
+  const navigateAnswersStudents = () => {
+    navigate("/answersStudents");
+  };
+
   return (
     <>
       <h2 className="mt-10 text-lg font-medium intro-y">Formularios</h2>
@@ -111,7 +115,9 @@ function Main() {
                     </div>
                   </Table.Td>
                   <Table.Td className="first:rounded-l-md last:rounded-r-md text-center bg-white border border-r-0 border-l-0 first:border-l last:border-r border-slate-200 dark:bg-darkmode-600 dark:border-darkmode-600 shadow-[20px_3px_20px_#0000000b]">
-                    {faker.stocks[0]}
+                    <Button variant="secondary" className="mr-2 shadow-md" onClick={navigateAnswersStudents}>
+                      Ver respuestas...
+                    </Button>
                   </Table.Td>
                   <Table.Td className="first:rounded-l-md last:rounded-r-md w-40 bg-white border border-r-0 border-l-0 first:border-l last:border-r border-slate-200 dark:bg-darkmode-600 dark:border-darkmode-600 shadow-[20px_3px_20px_#0000000b]">
                     <div
@@ -122,7 +128,7 @@ function Main() {
                       })}
                     >
                       <Lucide icon="CheckSquare" className="w-4 h-4 mr-2" />
-                      {faker.trueFalse[0] ? "Activo" : "Inactivo"}
+                        {faker.trueFalse[0] ? "Activo" : "Inactivo"}
                     </div>
                   </Table.Td>
                   <Table.Td className="first:rounded-l-md last:rounded-r-md w-56 bg-white border border-r-0 border-l-0 first:border-l last:border-r border-slate-200 dark:bg-darkmode-600 dark:border-darkmode-600 shadow-[20px_3px_20px_#0000000b] py-0 relative before:block before:w-px before:h-8 before:bg-slate-200 before:absolute before:left-0 before:inset-y-0 before:my-auto before:dark:bg-darkmode-400">

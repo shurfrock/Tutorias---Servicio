@@ -10,10 +10,13 @@ import Tippy from "../../base-components/Tippy";
 import { Dialog } from "../../base-components/Headless";
 import Table from "../../base-components/Table";
 import { useNavigate } from "react-router-dom";
+import { Menu, Slideover } from "../../base-components/Headless";
 
 function Main() {
   const [deleteConfirmationModal, setDeleteConfirmationModal] = useState(false);
   const deleteButtonRef = useRef(null);
+
+  const [buttonSlideoverPreview, setButtonSlideoverPreview] = useState(false);
 
   const navigate = useNavigate();
 
@@ -108,18 +111,28 @@ function Main() {
                   </Table.Td>
                   <Table.Td className="first:rounded-l-md last:rounded-r-md w-56 bg-white border border-r-0 border-l-0 first:border-l last:border-r border-slate-200 dark:bg-darkmode-600 dark:border-darkmode-600 shadow-[20px_3px_20px_#0000000b] py-0 relative before:block before:w-px before:h-8 before:bg-slate-200 before:absolute before:left-0 before:inset-y-0 before:my-auto before:dark:bg-darkmode-400">
                     <div className="flex items-center justify-center">
-                      <a className="flex items-center mr-3" href="#">
-                        <Lucide icon="CheckSquare" className="w-4 h-4 mr-1" />{" "}
+                      <a className="flex items-center mr-4" href="#">
+                        <Lucide icon="CheckSquare" className="w-5 h-5 mr-2" />{" "}
                         Editar
                       </a>
                       <a
-                        className="flex items-center text-danger"
+                        className="flex items-center text-danger mr-4"
                         href="#"
                         onClick={() => {
                           setDeleteConfirmationModal(true);
                         }}
                       >
-                        <Lucide icon="Trash2" className="w-4 h-4 mr-1" /> Borrar
+                        <Lucide icon="Trash2" className="w-5 h-5 mr-2" /> Borrar
+                      </a>
+                      <a 
+                        className="flex items-center" href="#" 
+                        onClick={(event: React.MouseEvent) => {
+                          event.preventDefault();
+                          setButtonSlideoverPreview(true);
+                        }}
+                      >
+                        <Lucide icon="User" className="w-5 h-5 mr-2" />
+                        Asignar Tutor
                       </a>
                     </div>
                   </Table.Td>
@@ -202,6 +215,94 @@ function Main() {
         </Dialog.Panel>
       </Dialog>
       {/* END: Delete Confirmation Modal */}
+      {/* BEGIN: Modal Content */}
+        <Slideover
+          size="xl"
+          backdrop="static"
+          open={buttonSlideoverPreview}
+          onClose={() => {
+            setButtonSlideoverPreview(false);
+          }}
+        >
+          <Slideover.Panel>
+            <a
+              onClick={(event: React.MouseEvent) => {
+                event.preventDefault();
+                setButtonSlideoverPreview(false);
+              }}
+              className="absolute top-0 left-0 right-auto mt-4 -ml-12"
+              href="#"
+            >
+              <Lucide icon="X" className="w-8 h-8 text-slate-400" />
+            </a>
+            <Slideover.Title className="p-5">
+              <h2 className="mr-auto text-base font-medium">
+                Asignar Tutor
+              </h2>
+            </Slideover.Title>
+            <Slideover.Description>
+              <h2 className="mt-3 text-3xl font-medium leading-none">
+                Tutor Actual:
+              </h2>
+              <h3 className="mt-3 text-2xl font-medium leading-none">
+                Nombre de Tutor
+              </h3>
+              <div className="overflow-x-auto mt-5">
+                <Table striped>
+                  <Table.Thead>
+                    <Table.Tr>
+                      <Table.Th className="whitespace-nowrap">
+                        Nombre
+                      </Table.Th>
+                      <Table.Th className="whitespace-nowrap">
+                        Correo
+                      </Table.Th>
+                      <Table.Th className="whitespace-nowrap">
+                        Codigo
+                      </Table.Th>
+                      <Table.Th className="whitespace-nowrap">
+                        Acciones
+                      </Table.Th>
+                    </Table.Tr>
+                  </Table.Thead>
+                  <Table.Tbody>
+                    <Table.Tr>
+                      <Table.Td>Angelina</Table.Td>
+                      <Table.Td>@angelinajolie</Table.Td>
+                      <Table.Td> Codigo 9 numeros </Table.Td>
+                      <Table.Td> 
+                        <Button variant="success" className="mr-2">
+                          Asignar
+                        </Button>  
+                      </Table.Td>
+                    </Table.Tr>
+                    <Table.Tr>
+                      <Table.Td>Brad</Table.Td>
+                      <Table.Td>@bradpitt</Table.Td>
+                      <Table.Td>Codigo 9 numeros</Table.Td>
+                      <Table.Td> 
+                        <Button variant="success" className="mr-2">
+                          Asignar
+                        </Button>
+                      </Table.Td> 
+                    </Table.Tr>
+                    <Table.Tr>
+                      <Table.Td>Charlie</Table.Td>
+                      <Table.Td>@charliehunnam</Table.Td>
+                      <Table.Td>Codigo 9 numeros</Table.Td>
+                      <Table.Td> 
+                        <Button variant="success" className="mr-2">
+                          Asignar
+                        </Button>
+                      </Table.Td> 
+                    </Table.Tr>
+                  </Table.Tbody>
+                </Table>
+              </div>
+            </Slideover.Description>
+          </Slideover.Panel>
+        </Slideover>
+      {/* END: Modal Content */}
     </>
   );
 }

@@ -9,8 +9,8 @@ import Register from "../pages/Register";
 import ErrorPage from "../pages/ErrorPage";
 import Students from "../pages/Students";
 import MenuHome from "../pages/MenuHome";
-import ChatBot from "../pages/ChatBot"
-
+import ChatBot from "../pages/ChatBot";
+import AnswersStudents from "../pages/AnswersStudents";
 
 function Router() {
   const routes = [
@@ -45,6 +45,10 @@ function Router() {
         {
           path: "/chatBot",
           element: <ChatBot />,
+        },
+        {
+          path: "/answersStudents",
+          element: <AnswersStudents />,
         }
       ],
     },

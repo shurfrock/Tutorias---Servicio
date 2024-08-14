@@ -153,10 +153,26 @@ function Main() {
                   className="w-full"
                   multiple
                 >
-                  <option value="1">Ingenieria Biomedica</option>
-                  <option value="2">Ingenieria Informatica</option>
-                  <option value="3">Ingenieria Robotica</option>
-                  <option value="4">Ingenieria </option>
+                  <option value="1">Todas las Carreras</option>
+                  <option value="2">Ingenieria Biomedica</option>
+                  <option value="3">Ingenieria Informatica</option>
+                  <option value="4">Ingenieria Robotica</option>
+                  <option value="5">Ingenieria </option>
+                </TomSelect>
+              </div>
+              <div className="mt-3">
+                <FormLabel htmlFor="crud-form-2">Alumnos</FormLabel>
+                <TomSelect
+                  id="crud-form-2"
+                  value={categories}
+                  onChange={setCategories}
+                  className="w-full"
+                  multiple
+                >
+                  <option value="1">Todos los Alumnos</option>
+                  <option value="2">Albeto Carlos Hernandez Hernandez</option>
+                  <option value="3">Albeto Carlos Hernandez Hernandez</option>
+                  <option value="4">Albeto Carlos Hernandez Hernandez</option>
                 </TomSelect>
               </div>
               <div className="mt-3">
