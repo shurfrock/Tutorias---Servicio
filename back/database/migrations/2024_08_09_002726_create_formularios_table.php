@@ -20,6 +20,9 @@ return new class extends Migration
             $table->string("status");
             $table->string("category");
             $table->timestamps();
+
+            // Definir la llave foránea con el nombre correcto
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
@@ -28,6 +31,10 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::table('formularios', function (Blueprint $table) {
+            $table->dropForeign(['category_id']);
+        });
+
         Schema::dropIfExists('formularios');
     }
 };
