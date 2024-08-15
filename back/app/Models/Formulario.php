@@ -37,6 +37,9 @@ class Formulario extends Model
     {
         return $this->hasMany("App\Models\Category" , "categories_id" , "id");
     }
-
+    public function questions()
+    {
+        return $this->hasMany("App\Models\Questions" , "questions_id" , "id");
+    }
 
 }

@@ -26,15 +26,15 @@ class Question extends Model
      *
      * @var array<int, string>
      */
-    protected $fillable = ['title', 'question_type'];
+    protected $fillable = ['title', 'question_type', 'options_id'];
 
-    public function form()
+    public function formulario()
     {
-        return $this->belongsTo(Formulario::class);
+        return $this->hasOne("App\Models\Formulario" , "id" , "questions _id");
     }
     public function options()
     {
-        return $this->hasMany(Questions_Options::class);
+        return $this->hasMany("App\Models\QuestionsOption" , "options_id" , "id");
     }
 
 }

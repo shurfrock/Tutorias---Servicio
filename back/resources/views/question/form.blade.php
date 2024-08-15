@@ -11,6 +11,11 @@
             <input type="text" name="question_type" class="form-control @error('question_type') is-invalid @enderror" value="{{ old('question_type', $question?->question_type) }}" id="question_type" placeholder="Question Type">
             {!! $errors->first('question_type', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
         </div>
+        <div class="form-group mb-2 mb20">
+            <label for="question_type" class="form-label">{{ __('Options id') }}</label>
+            <input type="text" name="question_type" class="form-control @error('Options id') is-invalid @enderror" value="{{ old('Options id', $question?->options_id) }}" id="options_id" placeholder="Options id">
+            {!! $errors->first('question_type', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
+        </div>
 
     </div>
     <div class="col-md-12 mt20 mt-2">

@@ -11,20 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('questions__options', function (Blueprint $table) {
-   
+        Schema::create('questions_options', function (Blueprint $table) {
             $table->id();
-            $table->string("text");
+            $table->string("texto");
             $table->timestamps();
         });
     }
 
-    /** $table->id();
-
+    /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('questions__options');
+        Schema::dropIfExists('questions_options');
     }
 };

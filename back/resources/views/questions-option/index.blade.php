@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('template_title')
-    Questions
+    Questions Options
 @endsection
 
 @section('content')
@@ -13,11 +13,11 @@
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                {{ __('Questions') }}
+                                {{ __('Questions Options') }}
                             </span>
 
                              <div class="float-right">
-                                <a href="{{ route('questions.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
+                                <a href="{{ route('questions-options.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
                                   {{ __('Create New') }}
                                 </a>
                               </div>
@@ -36,25 +36,22 @@
                                     <tr>
                                         <th>No</th>
                                         
-									<th >Title</th>
-									<th >Question Type</th>
+									<th >Texto</th>
 
-                                        <th>Question_id</th>
+                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($questions as $question)
+                                    @foreach ($questionsOptions as $questionsOption)
                                         <tr>
                                             <td>{{ ++$i }}</td>
                                             
-										<td >{{ $question->title }}</td>
-										<td >{{ $question->question_type }}</td>
-                                        <td >{{ $question->options_id }}</td>
+										<td >{{ $questionsOption->texto }}</td>
 
                                             <td>
-                                                <form action="{{ route('questions.destroy', $question->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('questions.show', $question->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Show') }}</a>
-                                                    <a class="btn btn-sm btn-success" href="{{ route('questions.edit', $question->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>
+                                                <form action="{{ route('questions-options.destroy', $questionsOption->id) }}" method="POST">
+                                                    <a class="btn btn-sm btn-primary " href="{{ route('questions-options.show', $questionsOption->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Show') }}</a>
+                                                    <a class="btn btn-sm btn-success" href="{{ route('questions-options.edit', $questionsOption->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-sm" onclick="event.preventDefault(); confirm('Are you sure to delete?') ? this.closest('form').submit() : false;"><i class="fa fa-fw fa-trash"></i> {{ __('Delete') }}</button>
@@ -67,7 +64,7 @@
                         </div>
                     </div>
                 </div>
-                {!! $questions->withQueryString()->links() !!}
+                {!! $questionsOptions->withQueryString()->links() !!}
             </div>
         </div>
     </div>

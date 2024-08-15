@@ -27,6 +27,7 @@ Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard'
 Route::resource("formularios",App\Http\Controllers\FormularioController::class);
 Route::resource("categories",App\Http\Controllers\CategoryController::class);
 Route::resource("questions",App\Http\Controllers\QuestionController::class);
+Route::resource("questions-options",App\Http\Controllers\QuestionsOptionController::class);
 
 
 
