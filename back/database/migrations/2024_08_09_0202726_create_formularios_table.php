@@ -23,6 +23,7 @@ return new class extends Migration
 
             // Definir la llave foránea con el nombre correcto
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('questions_id')->references('id')->on('questions')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
@@ -33,6 +34,8 @@ return new class extends Migration
     {
         Schema::table('formularios', function (Blueprint $table) {
             $table->dropForeign(['category_id']);
+            $table->dropForeign(['questions_id']);
+
         });
 
         Schema::dropIfExists('formularios');
