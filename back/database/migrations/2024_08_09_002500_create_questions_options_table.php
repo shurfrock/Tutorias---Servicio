@@ -11,10 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('questions__options', function (Blueprint $table) {
-            $table->engine="InnoDB";
+        Schema::create('questions_options', function (Blueprint $table) {
             $table->id();
-            $table->string("text");
+            $table->string("texto");
             $table->timestamps();
         });
     }
@@ -24,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('questions__options');
+        Schema::dropIfExists('questions_options');
     }
 };

@@ -11,8 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('form__categories', function (Blueprint $table) {
-            $table->engine="InnoDB";
+        Schema::create('categories', function (Blueprint $table) {
             $table->id();
             $table->string("name");
             $table->string("tag");
@@ -25,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('form__categories');
+        Schema::dropIfExists('categories');
     }
 };

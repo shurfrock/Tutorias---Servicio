@@ -19,6 +19,6 @@ class Users extends Authenticatable
     }
     public function forms()
     {
-        return $this->hasMany(Form::class);
+        return $this->hasMany(Formulario::class);
     }
 }
