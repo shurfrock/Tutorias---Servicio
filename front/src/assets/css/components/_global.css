@@ -1,0 +1,35 @@
+html {
+  scroll-behavior: smooth;
+  min-height: 100vh;
+  background-color: theme("colors.primary");
+  background-image: linear-gradient(
+    to bottom,
+    theme("colors.primary"),
+    theme("colors.primary" / 70%),
+    theme("colors.black" / 30%)
+  );
+  &.dark {
+    background-color: theme("colors.darkmode.700");
+    background-image: linear-gradient(
+      to bottom,
+      theme("colors.darkmode.800"),
+      theme("colors.darkmode.800" / 70%)
+    );
+    body {
+      color: theme("colors.slate.300");
+      *,
+      ::before,
+      ::after {
+        border-color: theme("colors.white" / 5%);
+      }
+    }
+  }
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-family: theme("fontFamily.roboto");
+    font-size: theme("fontSize.sm");
+    line-height: theme("lineHeight.5");
+    color: theme("colors.slate.700");
+  }
+}
