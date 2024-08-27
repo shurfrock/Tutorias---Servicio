@@ -24,4 +24,10 @@ Route::middleware('guest')->group(function () {
 Route::post('logout', [LoginController::class, 'logout'])->name('logout')->middleware('auth');
 
 Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('auth');
+Route::resource("formularios",App\Http\Controllers\FormularioController::class);
+Route::resource("categories",App\Http\Controllers\CategoryController::class);
+Route::resource("questions",App\Http\Controllers\QuestionController::class);
+Route::resource("questions-options",App\Http\Controllers\QuestionsOptionController::class);
+
+
 
