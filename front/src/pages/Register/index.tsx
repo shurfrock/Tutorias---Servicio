@@ -173,13 +173,13 @@ function Main() {
                   htmlFor="validation-form-3"
                   className="flex flex-col w-full sm:flex-row mt-3"
                 >
-                  Confrimar Contraseña
+                  Confirmar Contraseña
                 </FormLabel>
                 <FormInput
                   id="validation-form-3"
                   type="password"
-                  name="confrimPassword"
-                  placeholder="Confrimar Contraseña"
+                  name="confirmPassword"
+                  placeholder="Confirmar Contraseña"
                 />
                 <div className="mt-5 text-center xl:mt-8 xl:text-left">
                   <Button variant="primary" className="w-full xl:mr-3">
