@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\FormularioRequest;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
-
+use Illuminate\Http\JsonResponse;
 class FormularioController extends Controller
 {
     /**
@@ -36,12 +36,16 @@ class FormularioController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(FormularioRequest $request): RedirectResponse
+    public function store(FormularioRequest $request): JsonResponse
     {
-        Formulario::create($request->validated());
+        // Crear el formulario utilizando los datos validados
+        $formulario = Formulario::create($request->validated());
 
-        return Redirect::route('formularios.index')
-            ->with('success', 'Formulario created successfully.');
+        // Devolver una respuesta JSON
+        return response()->json([
+            'message' => 'Formulario creado con éxito.',
+            'formulario' => $formulario
+        ], 201); // Código HTTP 201 para "Created"
     }
 
     /**

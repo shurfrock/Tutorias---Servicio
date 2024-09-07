@@ -12,11 +12,13 @@ import {
 } from "../../base-components/Form";
 import { useNavigate } from "react-router-dom";
 import { Menu, Dialog } from "../../base-components/Headless";
-
+import axios from "axios";
 
 
 function Main() {
   const [categories, setCategories] = useState(["1"]);
+  const [formTitle, setFormTitle] = useState(""); 
+  const [isActive, setIsActive] = useState(false); 
   const editorConfig = {
     toolbar: {
       items: ["bold", "italic", "link"],
@@ -68,6 +70,30 @@ function Main() {
 
   const [deleteModal, setDeleteModal] = useState(false);
   const deleteButtonRef = useRef(null);
+
+  const handleSubmit = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault(); // Evita el comportamiento predeterminado del botón
+
+    const formData = {
+      title: formTitle,
+      description: editorData,
+      categories,
+      is_active: isActive,
+      questions
+    };
+
+    // Aquí enviamos los datos usando Axios
+    axios
+      .post("http://localhost:8000/formularios", formData)
+      .then((response) => {
+        console.log("Formulario guardado con éxito:", response.data);
+        setSuccessModal(true); // Abre el modal de éxito
+      })
+      .catch((error) => {
+        console.error("Error al guardar el formulario:", error);
+      });
+  };
+
 
   return (
     <>
@@ -329,10 +355,12 @@ function Main() {
                 >
                   Cancelar
                 </Button>
-                <Button type="button" variant="success" className="w-24"
-                  onClick={(event: React.MouseEvent)=> {
-                    event.preventDefault();
-                    setSuccessModal(true);
+                <Button
+                  type="button"
+                  variant="success"
+                  className="w-24"
+                  onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
+                    handleSubmit(event); // Pasa el evento al handleSubmit
                   }}
                 >
                   Guardar
