@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Models\Category;
@@ -14,10 +13,19 @@ class CategoryController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request): View
+    public function index(Request $request)
     {
         $categories = Category::paginate();
 
+        // Verificar si la solicitud es JSON
+        if ($request->expectsJson()) {
+            return response()->json([
+                'success' => true,
+                'data' => $categories
+            ], 200);
+        }
+
+        // Si no es JSON, retornar la vista
         return view('category.index', compact('categories'))
             ->with('i', ($request->input('page', 1) - 1) * $categories->perPage());
     }
@@ -29,27 +37,47 @@ class CategoryController extends Controller
     {
         $category = new Category();
 
+        // No es necesario responder en JSON para formularios
         return view('category.create', compact('category'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(CategoryRequest $request): RedirectResponse
+    public function store(CategoryRequest $request)
     {
-        Category::create($request->validated());
+        $category = Category::create($request->validated());
 
+        // Verificar si la solicitud es JSON
+        if ($request->expectsJson()) {
+            return response()->json([
+                'success' => true,
+                'message' => 'Categoría creada con éxito',
+                'data' => $category
+            ], 201); // Código HTTP 201 para creación exitosa
+        }
+
+        // Si no es JSON, redirigir como antes
         return Redirect::route('categories.index')
-            ->with('success', 'Category created successfully.');
+            ->with('success', 'Categoría creada con éxito.');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show($id): View
+    public function show(Request $request, $id)
     {
         $category = Category::find($id);
 
+        // Verificar si la solicitud es JSON
+        if ($request->expectsJson()) {
+            return response()->json([
+                'success' => true,
+                'data' => $category
+            ], 200);
+        }
+
+        // Si no es JSON, retornar la vista
         return view('category.show', compact('category'));
     }
 
@@ -60,25 +88,48 @@ class CategoryController extends Controller
     {
         $category = Category::find($id);
 
+        // No es necesario responder en JSON para formularios
         return view('category.edit', compact('category'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(CategoryRequest $request, Category $category): RedirectResponse
+    public function update(CategoryRequest $request, Category $category)
     {
         $category->update($request->validated());
 
+        // Verificar si la solicitud es JSON
+        if ($request->expectsJson()) {
+            return response()->json([
+                'success' => true,
+                'message' => 'Categoría actualizada con éxito',
+                'data' => $category
+            ], 200);
+        }
+
+        // Si no es JSON, redirigir como antes
         return Redirect::route('categories.index')
-            ->with('success', 'Category updated successfully');
+            ->with('success', 'Categoría actualizada con éxito');
     }
 
-    public function destroy($id): RedirectResponse
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(Request $request, $id)
     {
         Category::find($id)->delete();
 
+        // Verificar si la solicitud es JSON
+        if ($request->expectsJson()) {
+            return response()->json([
+                'success' => true,
+                'message' => 'Categoría eliminada con éxito'
+            ], 200);
+        }
+
+        // Si no es JSON, redirigir como antes
         return Redirect::route('categories.index')
-            ->with('success', 'Category deleted successfully');
+            ->with('success', 'Categoría eliminada con éxito');
     }
 }

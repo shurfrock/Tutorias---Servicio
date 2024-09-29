@@ -29,9 +29,28 @@ class LoginController extends Controller
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             $request->session()->regenerate();
 
-            return redirect()->intended('dashboard'); // se puede cambiar dashboard segun lo que se ocupe
+            // Verifica si la solicitud es AJAX o de tipo JSON
+            if ($request->expectsJson()) {
+                return response()->json([
+                    'success' => true,
+                    'message' => 'Inicio de sesión exitoso',
+                    'user' => Auth::user()
+                ], 200);
+            }
+
+            // Si no es JSON, redirigir como lo hace normalmente
+            return redirect()->intended('dashboard'); 
         }
 
+        // Si las credenciales fallan
+        if ($request->expectsJson()) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Credenciales inválidas'
+            ], 401);
+        }
+
+        // Lanza la excepción de validación en caso de que no sea una solicitud JSON
         throw ValidationException::withMessages([
             'email' => [trans('auth.failed')],
         ]);
@@ -44,6 +63,6 @@ class LoginController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect()->route('login');  // Redirige a la página de inicio de sesión después de cerrar sesión
+        return redirect()->route('login');  // Redirige a la página de inicio de sesión después de cerrar sesión
     }
 }
