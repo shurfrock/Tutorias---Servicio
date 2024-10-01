@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useLocation } from 'react-router-dom';
 import Lucide from "../../base-components/Lucide";
 import Breadcrumb from "../../base-components/Breadcrumb";
 import { Menu, Dialog } from "../../base-components/Headless";
@@ -31,6 +32,20 @@ function Main(props: { toggleMobileMenu: (event: React.MouseEvent) => void }) {
     navigate("/profile");
   };
 
+  const pageNames: { [key: string]: string } = {
+    '/menuHome': 'Inicio',
+    '/crud-data-list': 'Formularios',
+    '/crud-form': 'Creacion de Formularios',
+    '/students': 'Alumnos',
+    '/profile': 'Perfil',
+    '/answersStudents': 'Respuestas de Alumnos',
+  };
+
+  const location = useLocation();
+  
+  // Obtiene el nombre de la página según la ruta actual
+  const pageName = pageNames[location.pathname] || 'Página Desconocida';
+
   return (
     <>
       {/* BEGIN: Top Bar */}
@@ -38,10 +53,7 @@ function Main(props: { toggleMobileMenu: (event: React.MouseEvent) => void }) {
         {/* BEGIN: Breadcrumb */}
         <Breadcrumb light className="hidden -intro-x xl:flex">
           <Breadcrumb.Link to="/menuHome"> Tutorias </Breadcrumb.Link>
-          <Breadcrumb.Link to="/"> Nombre de Pagina </Breadcrumb.Link>
-          <Breadcrumb.Link to="/" active={true}>
-            Segundo Nombre
-          </Breadcrumb.Link>
+          <Breadcrumb.Link to={location.pathname} active={true}>{pageName}</Breadcrumb.Link>
         </Breadcrumb>
         {/* END: Breadcrumb */}
         {/* BEGIN: Mobile Menu */}

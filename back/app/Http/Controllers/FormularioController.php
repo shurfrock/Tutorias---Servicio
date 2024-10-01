@@ -44,7 +44,11 @@ class FormularioController extends Controller
     /**
      * Store a newly created resource in storage.
      */
+<<<<<<< HEAD
     public function store(FormularioRequest $request)
+=======
+    /* public function store(FormularioRequest $request): RedirectResponse
+>>>>>>> develop-fb
     {
         $formulario = Formulario::create($request->validated());
 
@@ -59,8 +63,26 @@ class FormularioController extends Controller
 
         // Si no es JSON, redirigir como antes
         return Redirect::route('formularios.index')
+<<<<<<< HEAD
             ->with('success', 'Formulario creado con éxito.');
     }
+=======
+            ->with('success', 'Formulario created successfully.');
+    } */
+
+    /*public function store(FormularioRequest $request): JsonResponse
+    {
+        $formulario = new Formulario([
+            '$category' => $request.get('category')
+        ]);
+        $formulario.save()
+
+        return response()->json([
+            'success' => 'true',
+            'id' => $formulario.id,
+        ]);
+    }*/
+>>>>>>> develop-fb
 
     /**
      * Display the specified resource.

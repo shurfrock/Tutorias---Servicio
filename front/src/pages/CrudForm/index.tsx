@@ -11,11 +11,13 @@ import {
   FormSelect,
 } from "../../base-components/Form";
 import { useNavigate } from "react-router-dom";
+import Litepicker from "../../base-components/Litepicker";
 import { Menu, Dialog } from "../../base-components/Headless";
 
 
 
 function Main() {
+  const [date, setDate] = useState("");
   const [categories, setCategories] = useState(["1"]);
   const editorConfig = {
     toolbar: {
@@ -65,61 +67,126 @@ function Main() {
   };
 
   const [successModal, setSuccessModal] = useState(false);
-
+  const [datepickerModalPreview, setDatepickerModalPreview] = useState(false);
   const [deleteModal, setDeleteModal] = useState(false);
   const deleteButtonRef = useRef(null);
+  const cancelButtonRef = useRef(null);
 
   return (
     <>
+      {/* END: Show Modal Toggle */}
+      {/* BEGIN: Modal Content */}
+      <Dialog open={datepickerModalPreview} onClose={()=> {
+        setDatepickerModalPreview(false);
+        }}
+        initialFocus={cancelButtonRef}
+        >
+        <Dialog.Panel>
+          {/* BEGIN: Modal Header */}
+          <Dialog.Title>
+              <h2 className="mr-auto text-base font-medium">
+                  Asignar Fecha
+              </h2>
+          </Dialog.Title>
+          {/* END: Modal Header */}
+          {/* BEGIN: Modal Body */}
+          <Dialog.Description className="grid grid-cols-12 gap-4 gap-y-3">
+            <div className="col-span-12 sm:col-span-6">
+              <FormLabel htmlFor="modal-datepicker-1">
+                De..
+              </FormLabel>
+              <Litepicker id="modal-datepicker-1" value={date} onChange={setDate} options={{
+                autoApply: false,
+                showWeekNumbers: true,
+                dropdowns: {
+                  minYear: 1990,
+                  maxYear: null,
+                  months: true,
+                  years: true,
+                },
+              }} />
+            </div>
+            <div className="col-span-12 sm:col-span-6">
+              <FormLabel htmlFor="modal-datepicker-2">
+                  Hasta...
+              </FormLabel>
+              <Litepicker id="modal-datepicker-2" value={date} onChange={setDate} options={{
+                autoApply: false,
+                showWeekNumbers: true,
+                dropdowns: {
+                  minYear: 1990,
+                  maxYear: null,
+                  months: true,
+                  years: true,
+                },
+              }} />
+            </div>
+          </Dialog.Description>
+          {/* END: Modal Body */}
+          {/* BEGIN: Modal Footer */}
+          <Dialog.Footer className="text-right">
+            <Button variant="outline-secondary" type="button" onClick={()=> {
+              setDatepickerModalPreview(false);
+              }}
+              className="w-20 mr-1"
+              >
+              Cancel
+            </Button>
+            <Button variant="outline-success" type="button" className="w-20" ref={cancelButtonRef}>
+              Asignar
+            </Button>
+          </Dialog.Footer>
+          {/* END: Modal Footer */}
+        </Dialog.Panel>
+      </Dialog>
+      {/* END: Modal Content */}
       <Dialog staticBackdrop open={deleteModal} onClose={()=> {
-          setDeleteModal(false);
-          }}
-          initialFocus={deleteButtonRef}
-          >
-          <Dialog.Panel>
-              <div className="p-5 text-center">
-                  <Lucide icon="XCircle" className="w-16 h-16 mx-auto mt-3 text-danger" />
-                  <div className="mt-5 text-3xl">¿Estas Seguro?</div>
-                  <div className="mt-2 text-slate-500">
-                      Se perdera los datos del Formulario
-                  </div>
-              </div>
-              <div className="px-5 pb-8 text-center">
-                  <Button type="button" variant="outline-secondary" onClick={()=> {
-                      setDeleteModal(false);
-                      }}
-                      className="w-24 mr-1"
-                      >
-                      Cancelar
-                  </Button>
-                  <Button type="button" variant="danger" className="w-24"  onClick={navigateForms}>
-                      Borrar
-                  </Button>
-              </div>
-          </Dialog.Panel>
+        setDeleteModal(false);}}
+        initialFocus={deleteButtonRef}>
+        <Dialog.Panel>
+          <div className="p-5 text-center">
+            <Lucide icon="XCircle" className="w-16 h-16 mx-auto mt-3 text-danger" />
+            <div className="mt-5 text-3xl">¿Estas Seguro?</div>
+            <div className="mt-2 text-slate-500">
+              Se perdera los datos del Formulario
+            </div>
+          </div>
+          <div className="px-5 pb-8 text-center">
+            <Button type="button" variant="outline-secondary" onClick={()=> {
+              setDeleteModal(false);
+              }}
+              className="w-24 mr-1"
+              >
+              Cancelar
+            </Button>
+            <Button type="button" variant="danger" className="w-24"  onClick={navigateForms}>
+              Borrar
+            </Button>
+          </div>
+        </Dialog.Panel>
       </Dialog>
       <Dialog open={successModal} onClose={()=> {
-          setSuccessModal(false);
-          }}
-          >
-          <Dialog.Panel>
-              <div className="p-5 text-center">
-                  <Lucide icon="CheckCircle" className="w-16 h-16 mx-auto mt-3 text-success" />
-                  <div className="mt-5 text-3xl">Excelente!</div>
-                  <div className="mt-2 text-slate-500">
-                      Se guardo correctamente!
-                  </div>
-              </div>
-              <div className="px-5 pb-8 text-center">
-                  <Button type="button" variant="success" onClick={()=> {
-                      setSuccessModal(false);
-                      }}
-                      className="w-24"
-                      >
-                      Siguiente
-                  </Button>
-              </div>
-          </Dialog.Panel>
+        setSuccessModal(false);
+        }}
+        >
+        <Dialog.Panel>
+          <div className="p-5 text-center">
+            <Lucide icon="CheckCircle" className="w-16 h-16 mx-auto mt-3 text-success" />
+            <div className="mt-5 text-3xl">Excelente!</div>
+            <div className="mt-2 text-slate-500">
+              Se guardo correctamente!
+            </div>
+          </div>
+          <div className="px-5 pb-8 text-center">
+            <Button type="button" variant="success" onClick={()=> {
+              setSuccessModal(false);
+              }}
+              className="w-24"
+              >
+              Siguiente
+            </Button>
+          </div>
+        </Dialog.Panel>
       </Dialog>
       <div className="flex items-center mt-8 intro-y">
         <h2 className="mr-auto text-lg font-medium"> Creación de Formulario </h2>
@@ -174,6 +241,19 @@ function Main() {
                   <option value="3">Albeto Carlos Hernandez Hernandez</option>
                   <option value="4">Albeto Carlos Hernandez Hernandez</option>
                 </TomSelect>
+              </div>
+              <div className="mt-3">
+                <Button
+                  as="a"
+                  href="#"
+                  variant="outline-primary" 
+                  onClick={(event: React.MouseEvent) => {
+                    event.preventDefault();
+                    setDatepickerModalPreview(true);
+                  }}
+                >
+                  Asignar fecha de respuesta
+                </Button>
               </div>
               <div className="mt-3">
                 <label>Descripcion</label>
