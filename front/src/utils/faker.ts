@@ -315,10 +315,10 @@ const fakers = {
   },
   fakeJobs() {
     const jobs = [
-      "Frontend Engineer",
-      "Software Engineer",
-      "Backend Engineer",
-      "DevOps Engineer",
+      "Ingenieria Informatica",
+      "Ingenieria Computacion",
+      "Ingenieria Electronica",
+      "Ingenieria Biomedica",
     ];
     return _.shuffle(jobs);
   },

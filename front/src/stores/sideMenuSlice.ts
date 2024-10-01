@@ -45,11 +45,11 @@ const initialState: SideMenuState = {
       title: "Alumnos",
       
     },
-    {
+    /*{
       icon: "MessageSquare",
       pathname: "/chatBot",
       title: "Chat Bot",
-    },
+    },*/
     {
       icon: "HardDrive",
       pathname: "/error-page",

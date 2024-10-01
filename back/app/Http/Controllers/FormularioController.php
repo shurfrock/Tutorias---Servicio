@@ -36,13 +36,26 @@ class FormularioController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(FormularioRequest $request): RedirectResponse
+    /* public function store(FormularioRequest $request): RedirectResponse
     {
         Formulario::create($request->validated());
 
         return Redirect::route('formularios.index')
             ->with('success', 'Formulario created successfully.');
-    }
+    } */
+
+    /*public function store(FormularioRequest $request): JsonResponse
+    {
+        $formulario = new Formulario([
+            '$category' => $request.get('category')
+        ]);
+        $formulario.save()
+
+        return response()->json([
+            'success' => 'true',
+            'id' => $formulario.id,
+        ]);
+    }*/
 
     /**
      * Display the specified resource.
