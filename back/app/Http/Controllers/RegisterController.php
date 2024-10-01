@@ -11,6 +11,7 @@ class RegisterController extends Controller
     {
         // Validación de la solicitud
         $request->validate([
+            'name' => 'required|string',
             'password' => 'required|min:8', // valida que la contraseña tenga mínimo 8 caracteres
             'email' => 'required|email|unique:users,email', // email único
             'code' => 'required|min:9|unique:users,code', // código único
@@ -34,7 +35,12 @@ class RegisterController extends Controller
             ], 201); // Código HTTP 201 para creación exitosa
         }
 
+        return response()->json([
+            'success' => true,
+            'message' => 'User created successfully',
+            'user' => $user
+        ], 201); // Código HTTP 201 para creación exitosa
         // Si no es JSON, redirigir como antes
-        return redirect()->route('register')->with('success', 'User created');
+        //return redirect()->route('register')->with('success', 'User created');
     }
 }
