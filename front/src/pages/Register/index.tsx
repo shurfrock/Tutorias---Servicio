@@ -4,11 +4,26 @@ import MainColorSwitcher from "../../components/MainColorSwitcher";
 import Button from "../../base-components/Button";
 import { FormInput, FormLabel, InputGroup } from "../../base-components/Form";
 import { useNavigate } from "react-router-dom";
-import { useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
+import React, { useState } from "react";
 import Toastify from "toastify-js";
 import { yupResolver } from "@hookform/resolvers/yup";
+import Alert from "../../base-components/Alert";
+import Lucide from "../../base-components/Lucide";
 import * as yup from "yup";
 import clsx from "clsx";
+
+const registerUser = async (params: any) => {
+  const response = await fetch('http://localhost:8000/register', {
+    method: 'POST',
+    body: JSON.stringify(params),
+    headers: {'Content-Type':'application/json'},
+  })
+  const data = await response.json()
+  console.log('registerUser data: ', data)
+
+  return data
+}
 
 function Main() {
   const navigate = useNavigate();
@@ -20,6 +35,7 @@ function Main() {
   const schema = yup
     .object({
       name: yup.string().required().min(10),
+      code: yup.string().required().min(9),
       email: yup.string().required().email(),
       password: yup.string().required().min(8),
     })
@@ -27,44 +43,23 @@ function Main() {
 
   const {
     register,
-    trigger,
+    handleSubmit,
     formState: { errors },
   } = useForm({
     mode: "onChange",
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = async (event: React.ChangeEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const result = await trigger();
-    if (!result) {
-      const failedEl = document
-        .querySelectorAll("#failed-notification-content")[0]
-        .cloneNode(true) as HTMLElement;
-      failedEl.classList.remove("hidden");
-      Toastify({
-        node: failedEl,
-        duration: 3000,
-        newWindow: true,
-        close: true,
-        gravity: "top",
-        position: "right",
-        stopOnFocus: true,
-      }).showToast();
-    } else {
-      const successEl = document
-        .querySelectorAll("#success-notification-content")[0]
-        .cloneNode(true) as HTMLElement;
-      successEl.classList.remove("hidden");
-      Toastify({
-        node: successEl,
-        duration: 3000,
-        newWindow: true,
-        close: true,
-        gravity: "top",
-        position: "right",
-        stopOnFocus: true,
-      }).showToast();
+  const onSubmit: SubmitHandler<any> = async (data: any) => {  
+    console.log('data', data)
+
+    try {
+        const response = await registerUser(data)
+        console.log('onSubmit', response)
+    
+        navigateLogin()
+    } catch (error) {
+      console.log(error)
     }
   };  
 
@@ -84,7 +79,18 @@ function Main() {
               Registrar una cuenta nueva
             </div>
             <div className="box px-5 py-8 mt-10 max-w-[450px] relative before:content-[''] before:z-[-1] before:w-[95%] before:h-full before:bg-slate-200 before:border before:border-slate-200 before:-mt-5 before:absolute before:rounded-lg before:mx-auto before:inset-x-0 before:dark:bg-darkmode-600/70 before:dark:border-darkmode-500/60">
-              <form className="validate-form" onSubmit={onSubmit}>
+              {/* <Alert variant="danger" className="flex items-center mb-2">
+                {({ dismiss }) => (
+                  <>
+                    <Lucide icon="AlertOctagon" className="w-6 h-6 mr-2" />{" "}
+                      Usuario Existente
+                    <Alert.DismissButton type="button" className="text-white" aria-label="Close" onClick={dismiss}>
+                      <Lucide icon="X" className="w-4 h-4" />
+                    </Alert.DismissButton>
+                  </>
+                )}
+              </Alert>  */}
+              <form className="validate-form" onSubmit={handleSubmit(onSubmit)}>
                 <FormLabel
                   htmlFor="validation-form-1"
                   className="flex flex-col w-full sm:flex-row"
@@ -115,6 +121,7 @@ function Main() {
                   Codigo
                 </FormLabel>
                 <FormInput
+                  {...register("code")}
                   id="validation-form-2"
                   type="text"
                   name="code"
@@ -169,20 +176,8 @@ function Main() {
                       errors.password.message}
                   </div>
                 )}
-                <FormLabel
-                  htmlFor="validation-form-3"
-                  className="flex flex-col w-full sm:flex-row mt-3"
-                >
-                  Confirmar Contraseña
-                </FormLabel>
-                <FormInput
-                  id="validation-form-3"
-                  type="password"
-                  name="confirmPassword"
-                  placeholder="Confirmar Contraseña"
-                />
                 <div className="mt-5 text-center xl:mt-8 xl:text-left">
-                  <Button variant="primary" className="w-full xl:mr-3">
+                  <Button variant="primary" className="w-full xl:mr-3" type="submit">
                     Registarse
                   </Button>
                   <Button variant="outline-secondary" className="w-full mt-3" onClick={navigateLogin}>

@@ -60,6 +60,14 @@ function Main() {
                 <Table.Tr key={fakerKey} className="intro-x">
                   <Table.Td className="first:rounded-l-md last:rounded-r-md w-40 bg-white border border-r-0 border-l-0 first:border-l last:border-r border-slate-200 dark:bg-darkmode-600 dark:border-darkmode-600 shadow-[20px_3px_20px_#0000000b]">
                     <div className="flex">
+                      <div className="w-10 h-10 image-fit zoom-in">
+                        <Tippy
+                          as="img"
+                          alt="Rocketman Tailwind HTML Admin Template"
+                          className="rounded-full shadow-[0px_0px_0px_2px_#fff,_1px_1px_5px_rgba(0,0,0,0.32)] dark:shadow-[0px_0px_0px_2px_#3f4865,_1px_1px_5px_rgba(0,0,0,0.32)]"
+                          src={faker.images[0]}
+                        />
+                      </div>
                     </div>
                   </Table.Td>
                   <Table.Td className="first:rounded-l-md last:rounded-r-md bg-white border border-r-0 border-l-0 first:border-l last:border-r border-slate-200 dark:bg-darkmode-600 dark:border-darkmode-600 shadow-[20px_3px_20px_#0000000b]">

@@ -14,7 +14,10 @@ import { Menu, Slideover } from "../../base-components/Headless";
 
 function Main() {
   const [deleteConfirmationModal, setDeleteConfirmationModal] = useState(false);
+  const [asignConfirmationModal, setAsignConfirmationModal] = useState(false);
+
   const deleteButtonRef = useRef(null);
+  const asignButtonRef = useRef(null);
 
   const [buttonSlideoverPreview, setButtonSlideoverPreview] = useState(false);
 
@@ -215,6 +218,7 @@ function Main() {
         </Dialog.Panel>
       </Dialog>
       {/* END: Delete Confirmation Modal */}
+      {/* BEGIN: Asign Confirmation Modal */}
       {/* BEGIN: Modal Content */}
         <Slideover
           size="xl"
@@ -266,36 +270,19 @@ function Main() {
                     </Table.Tr>
                   </Table.Thead>
                   <Table.Tbody>
+                  {_.take(fakerData, 9).map((faker, fakerKey) => (
                     <Table.Tr>
-                      <Table.Td>Angelina</Table.Td>
-                      <Table.Td>@angelinajolie</Table.Td>
+                   
+                      <Table.Td>Nombre Tutor</Table.Td>
+                      <Table.Td>@Correo de Tutor</Table.Td>
                       <Table.Td> Codigo 9 numeros </Table.Td>
                       <Table.Td> 
-                        <Button variant="success" className="mr-2">
+                        <Button ref={deleteButtonRef} variant="success" className="mr-2" >
                           Asignar
                         </Button>  
                       </Table.Td>
                     </Table.Tr>
-                    <Table.Tr>
-                      <Table.Td>Brad</Table.Td>
-                      <Table.Td>@bradpitt</Table.Td>
-                      <Table.Td>Codigo 9 numeros</Table.Td>
-                      <Table.Td> 
-                        <Button variant="success" className="mr-2">
-                          Asignar
-                        </Button>
-                      </Table.Td> 
-                    </Table.Tr>
-                    <Table.Tr>
-                      <Table.Td>Charlie</Table.Td>
-                      <Table.Td>@charliehunnam</Table.Td>
-                      <Table.Td>Codigo 9 numeros</Table.Td>
-                      <Table.Td> 
-                        <Button variant="success" className="mr-2">
-                          Asignar
-                        </Button>
-                      </Table.Td> 
-                    </Table.Tr>
+                  ))}
                   </Table.Tbody>
                 </Table>
               </div>

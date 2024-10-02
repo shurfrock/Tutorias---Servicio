@@ -37,35 +37,6 @@ function Main() {
   const onSubmit = async (event: React.ChangeEvent<HTMLFormElement>) => {
     event.preventDefault();
     const result = await trigger();
-    if (!result) {
-      const failedEl = document
-        .querySelectorAll("#failed-notification-content")[0]
-        .cloneNode(true) as HTMLElement;
-      failedEl.classList.remove("hidden");
-      Toastify({
-        node: failedEl,
-        duration: 3000,
-        newWindow: true,
-        close: true,
-        gravity: "top",
-        position: "right",
-        stopOnFocus: true,
-      }).showToast();
-    } else {
-      const successEl = document
-        .querySelectorAll("#success-notification-content")[0]
-        .cloneNode(true) as HTMLElement;
-      successEl.classList.remove("hidden");
-      Toastify({
-        node: successEl,
-        duration: 3000,
-        newWindow: true,
-        close: true,
-        gravity: "top",
-        position: "right",
-        stopOnFocus: true,
-      }).showToast();
-    }
   }; 
 
   return (
@@ -77,7 +48,7 @@ function Main() {
           <div className="w-96 intro-y">
             <img
               className="w-28 mx-auto"
-              alt="Rocketman - Tailwind HTML Admin Template"
+              alt="Logo"
               src={logoUrl}
             />
             <div className="text-2xl font-medium text-center text-white dark:text-slate-300 mt-14">
