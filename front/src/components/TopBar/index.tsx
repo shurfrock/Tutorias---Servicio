@@ -101,7 +101,7 @@ function Main(props: { toggleMobileMenu: (event: React.MouseEvent) => void }) {
             </div>
             <div className="hidden ml-3 md:block text-slate-200">
               <div className="max-w-[7rem] truncate font-medium">
-                {fakerData[0]["users"][0]["name"]}
+                Nombre de Usuario
               </div>
               <div className="text-xs text-slate-400">
                 {fakerData[0]["jobs"][0]}

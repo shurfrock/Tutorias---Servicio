@@ -17,6 +17,11 @@ function Main() {
     navigate("/register");
   };
 
+
+  const navigateLogin= () => {
+    navigate("/menuHome");
+  };
+
   const schema = yup
   .object({
     name: yup.string().required().min(10),
@@ -106,11 +111,11 @@ function Main() {
                 </div>
               )}
               <div className="mt-5 text-center xl:mt-8 xl:text-left">
-                <Button variant="primary" className="w-full xl:mr-3">
-                  Iniciar Secion
+                <Button variant="primary" className="w-full xl:mr-3" onClick={navigateLogin}>
+                  Iniciar Sesión
                 </Button>
                 <Button variant="outline-secondary" className="w-full mt-3" onClick={navigateRegister}>
-                  Registarse
+                  Registrarse
                 </Button>
               </div>
             </div>
