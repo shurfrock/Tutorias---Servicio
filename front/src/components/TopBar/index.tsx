@@ -117,7 +117,7 @@ function Main(props: { toggleMobileMenu: (event: React.MouseEvent) => void }) {
             </Menu.Item>
             <Menu.Divider />
             <Menu.Item onClick={navigateLogin}>
-              <Lucide icon="ToggleRight" className="w-4 h-4 mr-2"/> Salir de Sesion
+              <Lucide icon="ToggleRight" className="w-4 h-4 mr-2"/> Salir de Sesión
             </Menu.Item>
           </Menu.Items>
         </Menu>
